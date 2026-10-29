@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Birthday Surprise 🎁</title>
+<style>
+:root{--pink:#ff4f91;--gold:#ffd166;--ink:#fff8ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;overflow-x:hidden;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);
+background:radial-gradient(ellipse at 50% 100%,#ff8a5b 0%,#6d2b77 38%,#10183f 82%);text-align:center}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.45;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#ffd166 1px,transparent 1px);background-size:53px 53px,91px 91px;background-position:0 0,24px 33px}
+main{position:relative;max-width:850px;margin:auto;padding:48px 20px 60px}
+h1{font-size:clamp(2.6rem,9vw,5.8rem);line-height:1.03;margin:22px 0 12px;color:#ff7fae;text-shadow:0 5px 0 #a51c60,0 0 35px #ff4f91;letter-spacing:1px}
+h1 span{display:block;color:#ffd166;text-shadow:0 4px 0 #a75b27,0 0 28px #ffd166}
+.subtitle{font-size:clamp(1.05rem,3vw,1.4rem);line-height:1.6;max-width:650px;margin:20px auto;color:#fff1b8}
+.decor{font-size:clamp(2rem,6vw,4rem);animation:float 3s ease-in-out infinite;display:inline-block}
+.decor:nth-child(2){animation-delay:.5s}.decor:nth-child(3){animation-delay:1s}
+.card{margin:30px auto 24px;max-width:650px;padding:25px 20px 30px;border:1px solid #ffffff65;border-radius:28px;background:#ffffff13;backdrop-filter:blur(8px);box-shadow:0 18px 60px #090d2d65}
+.note{font-size:1.1rem;line-height:1.8}
+button{cursor:pointer;border:0;border-radius:999px;padding:17px 28px;margin-top:15px;font-size:1.1rem;font-weight:800;color:white;background:linear-gradient(135deg,#ff4f91,#ff2877);box-shadow:0 0 0 5px #ffffff20,0 10px 30px #ff287766;transition:transform .2s}
+button:hover{transform:translateY(-3px) scale(1.02)}
+.small{font-size:.92rem;color:#ffe8f3;margin-top:20px}
+#surprise{display:none;margin:25px auto 0;max-width:620px;padding:28px 20px;border-radius:24px;background:#fff8f0;color:#71345e;box-shadow:0 15px 55px #070b2c66;animation:pop .55s ease}
+#surprise h2{font-size:2rem;color:#e83e81;margin:5px}
+#surprise p{font-size:1.08rem;line-height:1.8}
+#surprise .big{font-size:3.5rem}
+.confetti{position:fixed;top:-20px;width:9px;height:14px;pointer-events:none;animation:fall linear forwards;z-index:5}
+footer{position:relative;padding:10px 20px 28px;color:#ffdfef;font-size:.85rem}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-13px) rotate(5deg)}}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.8}}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div aria-hidden="true"><span class="decor">🎈</span> <span class="decor">🎁</span> <span class="decor">🎈</span></div>
+  <h1>HAPPY <span>BIRTHDAY!</span></h1>
+  <p class="subtitle">Wishing you a day filled with happiness, love, laughter, and beautiful memories! 💖✨</p>
+  <section class="card">
+    <div style="font-size:4rem" aria-hidden="true">🎂</div>
+    <p class="note">You are an amazing friend, and you deserve all the good things life has to offer. Keep smiling, keep shining, and never stop being you! 🌟</p>
+    <button id="openGift" type="button">🎁 Open Your Gift ✨</button>
+    <p class="small">A little surprise, made especially for you 💝</p>
+  </section>
+  <section id="surprise" aria-live="polite">
+    <div class="big">💝🎉🥳</div>
+    <h2>Surprise, Bestie!</h2>
+    <p>May this new year of your life bring you endless joy, exciting adventures, good health, and dreams coming true. Thank you for being such a wonderful friend. You deserve the world! 💕</p>
+    <p><strong>Lots of love and the biggest birthday hug! 🤗</strong></p>
+    <div class="big">🎂🎈🎁</div>
+  </section>
+</main>
+<footer>Made with 💖 just for your special day</footer>
+<script>
+const btn=document.getElementById('openGift');
+btn.addEventListener('click',()=>{
+  const surprise=document.getElementById('surprise');
+  surprise.style.display='block';
+  btn.textContent='💖 Surprise Opened!';
+  btn.disabled=true;
+  surprise.scrollIntoView({behavior:'smooth',block:'center'});
+  const colors=['#ff4f91','#ffd166','#7ee8fa','#b8f7a8','#ffffff','#c9a0ff'];
+  for(let i=0;i<100;i++){
+    const piece=document.createElement('i');
+    piece.className='confetti';
+    piece.style.left=Math.random()*100+'vw';
+    piece.style.background=colors[Math.floor(Math.random()*colors.length)];
+    piece.style.animationDuration=(2+Math.random()*3)+'s';
+    piece.style.animationDelay=(Math.random()*.7)+'s';
+    document.body.appendChild(piece);
+    setTimeout(()=>piece.remove(),6000);
+  }
+});
+</script>
+</body>
+</html>
